@@ -1,5 +1,7 @@
 const matrix_size = 30;
 const matrix = [];
+
+// Materials
 const SKY = 1;
 const CLOUD = 2;
 const GROUND = 3;
@@ -40,8 +42,9 @@ const game = {
   tool: TOOL_NOT_SELECTED,
   inventory:{
     rock: 0,
-    gound: 0,
-    timber:0
+    ground: 0,
+    timber:0,
+    leaf: 0
   }
 }
 
@@ -81,11 +84,27 @@ for(let y = 7; y > 4; y--){ // Cloud
   }
 }
 
+const axeTool = document.getElementById("axeTool");
+axeTool.addEventListener('click', e => toolSelectHandler(e.target));
+const pikeaxeTool = document.getElementById("pikeaxeTool");
+pikeaxeTool.addEventListener('click', e => toolSelectHandler(e.target));
+const shovelTool = document.getElementById("shovelTool");
+shovelTool.addEventListener('click', e => toolSelectHandler(e.target));
+
+
 // functions to handle the game
+
+const resetGame = () => {
+  window.location.href = window.location.href;
+}
+
+// reset game button
+const btnReset = document.getElementById("btnReset");
+btnReset.addEventListener('click', resetGame);
 
 const gameClickHandler = (target) => {
   let wasRemoved = false;
-  switch(game.tool){
+  switch(+game.tool){
     case TOOL_SHOVEL:
       if(target.getAttribute('data-tile-type') === GROUND){
         game.inventory.gound++;
@@ -112,45 +131,101 @@ const gameClickHandler = (target) => {
 
 const toolSelectHandler = (target) => {
   game.tool = target.getAttribute('data-tool');
+  const selectedTool = document.getElementById("selectedTool");
+  switch(+game.tool){
+    case TOOL_SHOVEL:
+      selectedTool.innerText = "Shovel";
+      break;
+    case TOOL_AXE:
+      selectedTool.innerText = "Axe";
+      break;
+    case TOOL_PIKEAXE:
+      selectedTool.innerText = "PikeAxe";
+      break;
+  }
 }
 
 // for debug
-let out = '';
-for(let y = 0; y < matrix_size; y++){
-  for(let x = 0; x < matrix_size; x++){
-    out += matrix[y][x];
-  }
-  out += '\n';
-}
-console.log(out);
+// let out = '';
+// for(let y = 0; y < matrix_size; y++){
+//   for(let x = 0; x < matrix_size; x++){
+//     out += matrix[y][x];
+//   }
+//   out += '\n';
+// }
+// console.log(out);
 
-// build world html
+const tileClickHandler = target => {
+  console.log(target);
+  if(+game.tool === TOOL_NOT_SELECTED){
+    alert('Please select a tool');
+    return;
+  }
+
+  const material = +target.getAttribute('data-tile');
+  switch(material){
+    case SKY:
+    case CLOUD:
+      return;
+    case GROUND:
+      if(+game.tool === TOOL_SHOVEL){
+        game.inventory.ground++;
+        target.setAttribute("data-tile", 1);
+      }
+      break;
+    case LEAFS:
+      if(+game.tool === TOOL_AXE){
+        game.inventory.leaf++;
+        target.setAttribute("data-tile", 1);
+      }
+      break;      
+    case TIMBER:
+      if(+game.tool === TOOL_AXE){
+        game.inventory.timber++;
+        target.setAttribute("data-tile", 1);
+      }
+      break;
+    case ROCK:
+      if(+game.tool === TOOL_PIKEAXE){
+        game.inventory.rock++;
+        target.setAttribute("data-tile", 1);
+      }
+      break;
+    default:
+      console.log(' invalid material ' + material)
+  }
+  viewInventory();
+  
+}
+
+const viewInventory = () => {
+  const inventory = document.getElementById("inventory");
+  inventory.innerHTML = `Rock: ${game.inventory.rock}<br> Timber: ${game.inventory.timber}<br>Leafs: ${game.inventory.leaf}<br>Ground: ${game.inventory.ground}<br>`
+}
+
+viewInventory();
+// const SKY = 1;
+// const CLOUD = 2;
+// const GROUND = 3;
+// const ROCK = 4;
+// const TIMBER = 5;
+// const LEAFS = 6;
+// shovel: {
+//   id: TOOL_SHOVEL,
+//   name: 'Shovel',
+//   canRemove: GROUND,
+//   image: ''
+// }
+
+// == build world html ==>
 const worldEl = document.getElementById ('world');
 for(let y = 0; y < matrix_size; y++){
   for(let x = 0; x < matrix_size; x++){
     const tile = document.createElement('div');
     tile.setAttribute('data-tile', matrix[y][x]);
-    switch(matrix[y][x]){
-      case  SKY:
-        tile.innerText = 'sky';
-        break;
-      case  CLOUD:
-        tile.innerText = 'cld';
-        break;
-      case  TIMBER:
-        tile.innerText = 'tmb';
-        break;
-      case  LEAFS:
-        tile.innerText = 'fls';
-        break;
-      case  GROUND:
-        tile.innerText = 'grd';
-        break;
-      case  ROCK:
-        tile.innerText = 'rck';
-        break;
-    }
+    tile.setAttribute('data-y', y);
+    tile.setAttribute('data-x', x);
+    tile.addEventListener('click', event => tileClickHandler(event.target));
     worldEl.appendChild(tile);
   }
-  out += '\n';
 }
