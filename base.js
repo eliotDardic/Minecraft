@@ -79,7 +79,12 @@ for(let y = 11; y > 7; y--){ // tree's leafs
 }
 
 for(let y = 7; y > 4; y--){ // Cloud
-  for(let x=4; x < 11; x++){
+  for(let x=4; x < 8; x++){
+    matrix[y][x] = CLOUD;
+  }
+}
+for(let y = 5; y > 2; y--){ // Cloud
+  for(let x=5; x < 7; x++){
     matrix[y][x] = CLOUD;
   }
 }
