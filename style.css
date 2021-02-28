@@ -1,0 +1,392 @@
+:root {
+  --world-size: 30;
+  font-size: 62.5%;
+}
+
+@font-face {
+  font-family: minecraftFontItalic;
+  src: url('./minecraft_font/MinecraftBoldItalic-1y1e.otf');
+}
+@font-face {
+  font-family: minecraftFontRegular;
+  src: url('./minecraft_font/MinecraftRegular-Bmg3.otf');
+}
+@font-face {
+  font-family: minecraftFontBold;
+  src: url('./minecraft_font/MinecraftBold-nMK1.otf');
+}
+@font-face {
+  font-family: minecraftTitleFont;
+  src: url('./minecraft_font/MinecraftEvenings-RBao.ttf');
+}
+body {
+  height: 100vh;
+  font-family: minecraftFontBold;
+  color: aliceblue;
+  position: relative;
+}
+
+.header {
+  color: aliceblue;
+  padding-bottom: 15px;
+  text-align: center;
+}
+.restartGameButton,
+.resetBtn {
+  color: aliceblue;
+  font-size: 1.5rem;
+  border: 2px solid aliceblue;
+  background-color: rgb(112, 9, 9);
+  padding: 1vh;
+  margin-bottom: 1vh;
+  transition: all 0.1s ease-in;
+}
+.restartGameButton:hover,
+.resetBtn:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgb(194, 150, 150);
+}
+.tutEl {
+  margin: 5px 0;
+  height: 4vh;
+  width: 4vh;
+  border: 1px solid white;
+  background: center / cover no-repeat;
+  padding: 5px;
+}
+
+#minecraft {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 100vh 1fr 15vw;
+}
+#world {
+  max-height: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(var(--world-size), auto);
+  grid-template-rows: repeat(var(--world-size), auto);
+  grid-gap: 0;
+  grid-column: 2 / 2;
+}
+#sideToolBar {
+  height: 100%;
+  grid-column: 4 / 4;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2vh 2vw;
+}
+
+/* tools */
+#tools {
+}
+.inventoryList,
+.toolsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2vh;
+}
+.toolBox {
+  font-size: 1.4rem;
+  margin: 5px 0;
+  height: 10vh;
+  width: 10vh;
+  border: 1px solid white;
+  background: center / 50% no-repeat;
+  padding: 0.2rem;
+  transition: all 0.1s ease-in;
+}
+[data-type='axe'] {
+  background-image: url('./img/PinClipart.com_axe-clip-art_5397833.png');
+}
+
+[data-type='pickaxe'] {
+  background-image: url('./img/PinClipart.com_minecraft-birthday-clipart_751039.png');
+}
+
+[data-type='shovel'] {
+  background-image: url('./img/PinClipart.com_shovel-clip-art_3735821.png');
+}
+
+/* inventory */
+#inventory {
+}
+
+.inventoryBox {
+  margin: 5px 0;
+  height: 5vh;
+  width: 5vh;
+  border: 1px solid white;
+  background: center / cover no-repeat;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: all 0.1s ease-in;
+}
+
+/* tiles */
+.tile {
+  height: 100%;
+  width: 100%;
+  background: center / cover no-repeat;
+  transition: background-image 1s ease-in-out;
+  /* transition: border, margin none; */
+  /* transition: border 0.5s ease-in;
+  transition: background-image 0.5s ease-in-out; */
+}
+
+[data-type='sky'] {
+  background-color: rgb(50, 157, 245);
+}
+[data-type='cloud'] {
+  background-color: rgb(242, 247, 251);
+}
+
+[data-type='trunk'] {
+  background-image: url('./img/tree_trunk_block.jfif');
+}
+
+[data-type='leaves'] {
+  background-image: url('./img/leaves_block.png');
+}
+
+[data-type='rock'] {
+  background-image: url('./img/stone_block.png');
+}
+
+[data-type='dirt'] {
+  background-image: url('./img/dirt_block.jpg');
+}
+
+/* action style */
+.tile:hover {
+  border: 1px solid white;
+  margin: -1px;
+}
+
+.toolBox.selected {
+  background-color: blue;
+}
+.inventoryBox.selected {
+  border: 3px solid blue;
+}
+.inventoryBox:hover,
+.toolBox:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgb(194, 150, 150);
+}
+/* landing page style */
+#landingPage {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: center repeat;
+  background-image: url('./img/dirt_block.jpg');
+  padding: 5vh 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.minecraftTitle {
+  width: 80vw;
+  /* padding-bottom: 2vh; */
+}
+.startBtn {
+  color: black;
+  font-size: 2.4rem;
+  border: 2px solid black;
+  background-color: aliceblue;
+  padding: 2vh 2vw;
+  margin: 0 1vw;
+  transition: all 0.2s ease-in;
+}
+.startBtn:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px black;
+}
+
+.tutorial-container {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.801);
+  padding: 1vh 5vw;
+  padding-bottom: 3vh;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-rows: auto repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 1vw;
+}
+.tutorialHeader {
+  grid-row: 1/1;
+  grid-column: 1/5;
+  font-size: 5rem;
+  padding-bottom: 1vh;
+  font-family: minecraftFontRegular;
+}
+.tutorial-container h2 {
+  justify-self: start;
+  font-family: minecraftFontRegular;
+  font-size: 3rem;
+}
+.tutorial-container h3 {
+  justify-self: center;
+  font-family: minecraftFontItalic;
+  font-size: 2rem;
+  text-align: right;
+}
+.tutorial-container h4 {
+  justify-self: center;
+  font-family: minecraftFontItalic;
+  font-size: 2rem;
+  text-align: center;
+}
+.tutorial-container .toolBox:hover {
+  cursor: auto;
+  box-shadow: none;
+}
+#landingPage.hidden {
+  display: none;
+}
+.credit {
+  text-align: right;
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px black;
+}
+
+@media all and (max-width: 950px) {
+  #minecraft {
+    grid-template-rows: 18vh 82vh;
+    grid-template-columns: auto;
+  }
+  #sideToolBar {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+  #sideToolBar h1 {
+    display: none;
+  }
+  #world {
+    grid-row: 2 / 2;
+    grid-column: 1 / 1;
+  }
+  .inventoryList,
+  .toolsList {
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+  }
+
+  .inventoryBox,
+  .toolBox {
+    margin: 2px 5px;
+  }
+  .header {
+    padding-bottom: 5px;
+  }
+  .restartGameButton,
+  .resetBtn {
+    padding: 10px;
+    margin-bottom: 0;
+  }
+  .tutorial-container h2 {
+    font-size: 2rem;
+  }
+  .tutorial-container h3 {
+    font-size: 1.3rem;
+  }
+  .tutorial-container h4 {
+    font-size: 1.3rem;
+  }
+}
+@media all and (max-width: 609px) {
+  #sideToolBar {
+    display: grid;
+    grid-template-rows: repeat(3, 6vh);
+    grid-template-columns: auto auto auto;
+    column-gap: 1vw;
+  }
+  #tools {
+    grid-row: 1 / 3;
+  }
+  #inventory {
+    grid-row: 1 / 3;
+  }
+  .restartGameButton {
+    grid-row: 1 / 1;
+  }
+  .resetBtn {
+    grid-row: 2 / 2;
+  }
+  .restartGameButton,
+  .resetBtn {
+    grid-column: 3 / 3;
+    font-size: 1rem;
+  }
+  .tutorial-container h2 {
+    font-size: 1.5rem;
+  }
+  .tutorial-container h3 {
+    font-size: 1rem;
+  }
+  .tutorial-container h4 {
+    font-size: 1rem;
+  }
+}
+@media all and (max-width: 520px) {
+  #minecraft {
+    grid-template-rows: 20vh 80vh;
+  }
+  #sideToolBar {
+    grid-template-rows: 1fr 1fr 50px;
+    grid-template-columns: auto auto;
+    /* row-gap: 1vh; */
+    padding: 1px;
+    padding-top: 10px;
+  }
+  #tools {
+    grid-row: 1 / 3;
+  }
+  #inventory h2,
+  #tools h2 {
+    display: none;
+  }
+  #inventory {
+    grid-row: 3 / 3;
+  }
+  .inventoryList,
+  .toolsList {
+    padding-bottom: 1px;
+  }
+  .restartGameButton {
+    grid-row: 1 / 1;
+  }
+  .resetBtn {
+    grid-row: 2 / 2;
+  }
+  #world {
+    width: 100%;
+  }
+  .tutorial-container h2 {
+    font-size: 1.3rem;
+  }
+  .tutorial-container h3 {
+    font-size: 0.8rem;
+  }
+  .tutorial-container h4 {
+    font-size: 0.8rem;
+  }
+  .tutorial-container .toolBox {
+    margin: 2px 0;
+    height: 8vh;
+    width: 8vh;
+  }
+}

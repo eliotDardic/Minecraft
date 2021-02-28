@@ -1,42 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<link rel="stylesheet" href="index.css" />
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
 
-	<body>
-		<div class="container">
-			<div class="world" id="world"></div>
-			<div class="tools">
-				<button id="btnReset">RESET</button>
-				<div>
-					AXE
-					<img src="images/axe.png" alt="" data-tool="12" id="axeTool" />
+  <body>
+    <div class="container">
+      <div class="world" id="world"></div>
+      <div class="tools">
+        <button id="btnReset">RESET</button>
+        <div>
+          AXE
+          <img src="images/axe.png" alt="" data-tool="12" id="axeTool" />
+        </div>
+        <div>
+          PIKEAXE
+          <img
+            src="images/pickaxe.png"
+            alt=""
+            data-tool="13"
+            id="pikeaxeTool"
+          />
+        </div>
+        <div>
+          SHOVLE
+          <img src="images/shovel.png" alt="" data-tool="11" id="shovelTool" />
+        </div>
+        <div>
+					<div id="selectedTool">Tool not selected</div>
+					<hr />
+					ROCK
+					<img src="images/rock.png" alt="" data-tool="4" id="rockElement" />
 				</div>
 				<div>
-					PIKEAXE
+				<div>
+					GROUND
 					<img
-						src="images/pickaxe.png"
+						src="images/ground.png"
 						alt=""
-						data-tool="13"
-						id="pikeaxeTool"
+						data-tool="3"
+						id="groundElement"
 					/>
 				</div>
 				<div>
-					SHOVLE
-					<img src="images/shovel.png" alt="" data-tool="11" id="shovelTool" />
+					TIMBER
+					<img
+						src="images/timber.png"
+						alt=""
+						data-tool="5"
+						id="timberElement"
+					/>
 				</div>
-				<hr />
-				<div id="selectedTool">Tool not selected</div>
-				<h3>Inventory</h3>
-				<div id="inventory"></div>
-			</div>
-		</div>
+				<div>
+					LEAF
+					<img src="images/leaf.png" alt="" data-tool="6" id="leafElement" />
+				</div>
+       
+        <h3>Inventory</h3>
+        <div id="inventory">
+        </div>
+      </div>
+    </div>
 
-		<script src="base.js"></script>
-	</body>
+    <script src="base.js"></script>
+  </body>
 </html>

@@ -95,6 +95,14 @@ const pikeaxeTool = document.getElementById("pikeaxeTool");
 pikeaxeTool.addEventListener('click', e => toolSelectHandler(e.target));
 const shovelTool = document.getElementById("shovelTool");
 shovelTool.addEventListener('click', e => toolSelectHandler(e.target));
+const rockElement = document.getElementById("rockElement");
+rockElement.addEventListener('click', e => toolSelectHandler(e.target));
+const groundElement = document.getElementById("groundElement");
+groundElement.addEventListener('click', e => toolSelectHandler(e.target));
+const timberElement = document.getElementById("timberElement");
+timberElement.addEventListener('click', e => toolSelectHandler(e.target));
+const leafElement = document.getElementById("leafElement");
+leafElement.addEventListener('click', e => toolSelectHandler(e.target));
 
 
 // functions to handle the game
